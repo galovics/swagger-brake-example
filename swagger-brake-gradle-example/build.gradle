@@ -12,7 +12,7 @@ buildscript {
 }
 
 
-group 'io.redskap.swagger.brake.gradle'
+group 'io.redskap.example'
 
 apply plugin: 'java'
 apply plugin: 'maven'
