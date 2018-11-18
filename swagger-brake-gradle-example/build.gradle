@@ -1,0 +1,68 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath("io.swagger:swagger-codegen:2.3.1")
+        classpath("io.redskap:swagger-brake-gradle:0.0.1-SNAPSHOT")
+        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:latest.release"
+    }
+}
+
+
+group 'io.redskap.swagger.brake.gradle'
+
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: "maven-publish"
+apply plugin: 'swagger-brake'
+apply plugin: "com.jfrog.artifactory"
+
+version '0.0.1-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+import io.swagger.codegen.DefaultGenerator
+import io.swagger.codegen.config.CodegenConfigurator
+
+swaggerBrake {
+    mavenRepoUrl = "http://localhost:8081/artifactory/libs-snapshot-local"
+    newApi = "${project.buildDir}/resources/main/swagger.yaml"
+}
+
+artifactory {
+    contextUrl = "http://localhost:8081/artifactory"
+    publish {
+        repository {
+            repoKey = 'libs-snapshot-local'
+            username = "admin"
+            password = "password"
+        }
+        defaults {
+            publications ('mavenJava')
+            publishConfigs('archives', 'published')
+            publishBuildInfo = true
+            publishArtifacts = true
+            publishPom = true
+        }
+    }
+    clientConfig.info.setBuildNumber('' + new java.util.Random(System.currentTimeMillis()).nextInt(20000))
+    clientConfig.timeout = 600
+}
+
+task generateApi {
+    doLast {
+        def config = new CodegenConfigurator()
+        config.setLang("swagger")
+        config.setInputSpec("${project.rootDir}/src/main/resources/swagger.yaml")
+        config.setOutputDir(project.buildDir.toString())
+        new DefaultGenerator().opts(config.toClientOptInput()).generate()
+    }
+}
+
+compileJava.dependsOn('generateApi')
