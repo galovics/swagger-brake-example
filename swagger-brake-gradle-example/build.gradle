@@ -6,7 +6,7 @@ buildscript {
     }
     dependencies {
         classpath("io.swagger:swagger-codegen:2.3.1")
-        classpath("io.redskap:swagger-brake-gradle:0.0.1-SNAPSHOT")
+        classpath("io.redskap:swagger-brake-gradle:0.1.0")
         classpath "org.jfrog.buildinfo:build-info-extractor-gradle:latest.release"
     }
 }
@@ -17,7 +17,7 @@ group 'io.redskap.example'
 apply plugin: 'java'
 apply plugin: 'maven'
 apply plugin: "maven-publish"
-apply plugin: 'swagger-brake'
+apply plugin: 'io.redskap.swagger-brake'
 apply plugin: "com.jfrog.artifactory"
 
 version '0.0.1-SNAPSHOT'
