@@ -37,7 +37,7 @@
                         </goals>
                         <configuration>
                             <newApi>${project.build.directory}/generated-sources/swagger/swagger.json</newApi>
-                            <mavenRepoUrl>http://localhost:8081/artifactory/libs-snapshot-local</mavenRepoUrl>
+                            <mavenRepoUrl>http://192.168.56.1:8081/artifactory/libs-snapshot-local</mavenRepoUrl>
                         </configuration>
                     </execution>
                 </executions>

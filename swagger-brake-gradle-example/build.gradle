@@ -31,7 +31,7 @@ import io.swagger.codegen.DefaultGenerator
 import io.swagger.codegen.config.CodegenConfigurator
 
 swaggerBrake {
-    mavenRepoUrl = "http://localhost:8081/artifactory/libs-snapshot-local"
+    mavenRepoUrl = "http://192.168.56.1:8081/artifactory/libs-snapshot-local"
     newApi = "${project.buildDir}/resources/main/swagger.yaml"
 }
 
