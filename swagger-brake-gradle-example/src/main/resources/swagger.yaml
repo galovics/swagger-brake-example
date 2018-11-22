@@ -53,7 +53,7 @@ paths:
         schema:
           $ref: "#/definitions/Pet"
       responses:
-        404:
+        405:
           description: "Invalid input"
       security:
       - petstore_auth:
