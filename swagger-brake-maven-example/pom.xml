@@ -55,7 +55,7 @@
                         </goals>
                         <configuration>
                             <publisher>
-                                <contextUrl>http://localhost:8081/artifactory</contextUrl>
+                                <contextUrl>http://192.168.56.1:8081/artifactory</contextUrl>
                                 <username>admin</username>
                                 <password>password</password>
                                 <repoKey>libs-snapshot-local</repoKey>
