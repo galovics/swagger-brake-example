@@ -6,7 +6,7 @@ buildscript {
     }
     dependencies {
         classpath("io.swagger:swagger-codegen:2.3.1")
-        classpath("io.redskap:swagger-brake-gradle:0.1.0")
+        classpath("io.redskap:swagger-brake-gradle:0.2.0-SNAPSHOT")
         classpath "org.jfrog.buildinfo:build-info-extractor-gradle:latest.release"
     }
 }
@@ -32,6 +32,8 @@ import io.swagger.codegen.config.CodegenConfigurator
 
 swaggerBrake {
     mavenRepoUrl = "http://localhost:8081/artifactory/libs-snapshot-local"
+    mavenRepoUsername = "admin"
+    mavenRepoPassword = "password"
     newApi = "${project.buildDir}/resources/main/swagger.yaml"
 }
 

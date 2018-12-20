@@ -29,7 +29,7 @@
             <plugin>
                 <groupId>io.redskap</groupId>
                 <artifactId>swagger-brake-maven-plugin</artifactId>
-                <version>0.1.0</version>
+                <version>0.2.1</version>
                 <executions>
                     <execution>
                         <goals>
@@ -38,6 +38,8 @@
                         <configuration>
                             <newApi>${project.build.directory}/generated-sources/swagger/swagger.json</newApi>
                             <mavenRepoUrl>http://localhost:8081/artifactory/libs-snapshot-local</mavenRepoUrl>
+                            <mavenRepoUsername>admin</mavenRepoUsername>
+                            <mavenRepoPassword>password</mavenRepoPassword>
                         </configuration>
                     </execution>
                 </executions>
