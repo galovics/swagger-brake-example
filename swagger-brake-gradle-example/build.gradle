@@ -3,22 +3,24 @@ buildscript {
         mavenLocal()
         mavenCentral()
         jcenter()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
     dependencies {
         classpath("io.swagger:swagger-codegen:2.3.1")
-        classpath("io.redskap:swagger-brake-gradle:0.2.0-SNAPSHOT")
+        classpath "io.redskap:swagger-brake-gradle:0.3.0"
         classpath "org.jfrog.buildinfo:build-info-extractor-gradle:latest.release"
     }
 }
-
 
 group 'io.redskap.example'
 
 apply plugin: 'java'
 apply plugin: 'maven'
 apply plugin: "maven-publish"
-apply plugin: 'io.redskap.swagger-brake'
 apply plugin: "com.jfrog.artifactory"
+apply plugin: "io.redskap.swagger-brake"
 
 version '0.0.1-SNAPSHOT'
 
