@@ -9,8 +9,8 @@ buildscript {
     }
     dependencies {
         classpath("io.swagger:swagger-codegen:2.3.1")
-        classpath "io.redskap:swagger-brake-gradle:0.3.0"
-        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:latest.release"
+        classpath "io.redskap:swagger-brake-gradle:1.0.0"
+        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.6.0"
     }
 }
 
@@ -32,20 +32,24 @@ repositories {
 import io.swagger.codegen.DefaultGenerator
 import io.swagger.codegen.config.CodegenConfigurator
 
+ext.artifactoryBaseUrl  = "http://localhost:8082"
+ext.artifactoryUsername = "admin"
+ext.artifactoryPassword = "password"
+
 swaggerBrake {
-    mavenRepoUrl = "http://localhost:8081/artifactory/libs-snapshot-local"
-    mavenRepoUsername = "admin"
-    mavenRepoPassword = "password"
+    mavenRepoUrl = "${artifactoryBaseUrl}/artifactory/libs-snapshot-local"
+    mavenRepoUsername = artifactoryUsername
+    mavenRepoPassword = artifactoryPassword
     newApi = "${project.buildDir}/resources/main/swagger.yaml"
 }
 
 artifactory {
-    contextUrl = "http://localhost:8081/artifactory"
+    contextUrl = "${artifactoryBaseUrl}/artifactory"
     publish {
         repository {
             repoKey = 'libs-snapshot-local'
-            username = "admin"
-            password = "password"
+            username = artifactoryUsername
+            password = artifactoryPassword
         }
         defaults {
             publications ('mavenJava')
